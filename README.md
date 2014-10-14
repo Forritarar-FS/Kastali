@@ -4,7 +4,7 @@
 ##Nú búum við allir saman til leik þar sem við hönnum hver eitt herbergi í kastalanum okkar
 
 Það sem þið þurfið að gera er að búa til ykkar eigið herbergi í kastalanum. Kastalinn lítur svona út:
-
+```
 -------------
 |11|12|13|14|
 -------------
@@ -36,7 +36,7 @@ Halldór:		43
 Sigurþór:		44
 Sigurpáll:		51
 Alexander		54
-
+```
 ##Reglurnar eru:
 
 - skrárnar sem túlka herbergin eiga að vera inni í pythonHus möppunni
