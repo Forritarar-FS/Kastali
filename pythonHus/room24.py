@@ -7,10 +7,12 @@ print('Welcome to Room 24!')
 class stebbi():
     Tk = None
     
+    fps = 0
     fucks = 0
     
     texti = None
-    cattexti = None
+    cattexti = 20
+    anontexti = 100
     
     inc = 1
     auto = 0
@@ -19,6 +21,7 @@ class stebbi():
     anonamt = 0
     
     costcat = 20
+    anoncost = 100
 
     def __init__(self):
         pass
@@ -39,6 +42,7 @@ class stebbi():
         stebbi.Tk.config(menu=menubar)
         
         fucksgiven = Label(stebbi.Tk, text="Fucks given:")
+        
         stebbi.texti = StringVar()
         stebbi.texti.set(stebbi.fucks)
         clickamt = Label(stebbi.Tk, textvariable=stebbi.texti)
@@ -58,25 +62,29 @@ class stebbi():
             print(stebbi.fucks)
             stebbi.texti.set(stebbi.fucks)
 
+
     def catfun():
         if stebbi.fucks >= stebbi.costcat:
             stebbi.catamt += 1
             stebbi.fucks -= stebbi.costcat
             stebbi.costcat = stebbi.costcat * 1.1
+            stebbi.fps += 0.1
             stebbi.texti.set(stebbi.fucks)
         else:
             messagebox.showerror("FUCK!", "Not enough Fucks given!!!")
         
     def anonfun():
-        if stebbi.fucks >= 100:
+        if stebbi.fucks >= stebbi.anoncost:
             stebbi.anonamt += 1
-            stebbi.fucks -= 100
+            stebbi.fucks -= stebbbi.anoncost
+            stebbi.anoncost = stebbbi.anoncost * 1.1
+            stebbi.fps += 0.5
             stebbi.texti.set(stebbi.fucks)
         else:
             messagebox.showerror("FUCK!", "Not enough Fucks given!!!")
         
     def upgradefun3():
-        upgrade3amt += 1
+        pass
     
     def upgradefun4():
         upgrade4amt += 1
@@ -116,32 +124,26 @@ class stebbi():
         
         stebbi.cattexti = StringVar()
         stebbi.cattexti.set(stebbi.costcat)
+        Label(stebbi.upgrades, text="Cost: ").grid(row=0, column=1)
+        Label(stebbi.upgrades, textvariable=stebbi.cattexti).grid(row=0, column=2)
         
-        catcost = Label(stebbi.upgrades, textvariable=stebbi.cattexti)
+        Button(stebbi.upgrades, text="Cat", command=stebbi.catfun).grid(row=0)
         
-        cat = Button(stebbi.upgrades, text="Cat", command=stebbi.catfun)
-        anoncost = Label(stebbi.upgrades, text="Cost:")
-        anonymous = Button(stebbi.upgrades, text="Anonymous", command=stebbi.anonfun)
-        upgrade3 = Button(stebbi.upgrades, text="Upgrade3", command=stebbi.upgradefun3)
-        upgrade4 = Button(stebbi.upgrades, text="Upgrade4", command=stebbi.upgradefun4)
-        upgrade5 = Button(stebbi.upgrades, text="Upgrade5", command=stebbi.upgradefun5)
-        upgrade6 = Button(stebbi.upgrades, text="Upgrade6", command=stebbi.upgradefun6)
-        upgrade7 = Button(stebbi.upgrades, text="Upgrade7", command=stebbi.upgradefun7)
-        
-        catcost.pack()
-        cat.pack()
-        anoncost.pack()
-        anonymous.pack()
-        #cost.pack()
-        upgrade3.pack()
-        #cost.pack()
-        upgrade4.pack()
-        #cost.pack()
-        upgrade5.pack()
-        #cost.pack()
-        upgrade6.pack()
-        #cost.pack()
-        upgrade7.pack()
+        stebbi.anontexti = StringVar()
+        stebbi.anontexti.set(stebbi.anoncost)
+        Label(stebbi.upgrades, text="Cost: ").grid(row=1, column=1)
+        Label(stebbi.upgrades, textvariable=stebbi.anontexti).grid(row=1, column=2)
+        Button(stebbi.upgrades, text="Anonymous", command=stebbi.anonfun).grid(row=1)
+        Label(stebbi.upgrades, text="Cost:").grid(row=2, column=1)
+        Button(stebbi.upgrades, text="Upgrade3", command=stebbi.upgradefun3).grid(row=2)
+        Label(stebbi.upgrades, text="Cost:").grid(row=3, column=1)
+        Button(stebbi.upgrades, text="Upgrade4", command=stebbi.upgradefun4).grid(row=3)
+        Label(stebbi.upgrades, text="Cost:").grid(row=4, column=1)
+        Button(stebbi.upgrades, text="Upgrade5", command=stebbi.upgradefun5).grid(row=4)
+        Label(stebbi.upgrades, text="Cost:").grid(row=5, column=1)
+        Button(stebbi.upgrades, text="Upgrade6", command=stebbi.upgradefun6).grid(row=5)
+        Label(stebbi.upgrades, text="Cost:").grid(row=6, column=1)
+        Button(stebbi.upgrades, text="Upgrade7", command=stebbi.upgradefun7).grid(row=6)
         
         mainloop()
         
