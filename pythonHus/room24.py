@@ -126,7 +126,6 @@ class stebbi():
         stebbi.cattexti.set(stebbi.costcat)
         Label(stebbi.upgrades, text="Cost: ").grid(row=0, column=1)
         Label(stebbi.upgrades, textvariable=stebbi.cattexti).grid(row=0, column=2)
-        
         Button(stebbi.upgrades, text="Cat", command=stebbi.catfun).grid(row=0)
         
         stebbi.anontexti = StringVar()
@@ -134,6 +133,7 @@ class stebbi():
         Label(stebbi.upgrades, text="Cost: ").grid(row=1, column=1)
         Label(stebbi.upgrades, textvariable=stebbi.anontexti).grid(row=1, column=2)
         Button(stebbi.upgrades, text="Anonymous", command=stebbi.anonfun).grid(row=1)
+        
         Label(stebbi.upgrades, text="Cost:").grid(row=2, column=1)
         Button(stebbi.upgrades, text="Upgrade3", command=stebbi.upgradefun3).grid(row=2)
         Label(stebbi.upgrades, text="Cost:").grid(row=3, column=1)
