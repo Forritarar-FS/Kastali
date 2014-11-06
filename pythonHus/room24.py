@@ -8,36 +8,55 @@ class stebbi():
     Tk = None
     
     fps = 0
+    fpc = 1
     fucks = 0
+    totfucks = 0
+
+    fpcup = 0
+    fpcupcost = 1000
     
     texti = None
-    cattexti = 20
-    anontexti = 100
-    
-    inc = 1
-    auto = 0
-    
+    metexti = 20
+    cattexti = 150
+    anontexti = 750
+
+
+    meamt = 0
     catamt = 0
     anonamt = 0
-    
-    costcat = 20
-    anoncost = 100
+
+    mecost = 20
+    costcat = 150
+    anoncost = 750
+
+    D = room.grunnur(24)
 
     def __init__(self):
         pass
     def display(self):
         stebbi.Tk = Tk()
-            
-        D = room.grunnur(24)
-        D.info = ("Welcome to my clicker game. You gotta click until you can click no more! Or atleast until you have bought all the stuffs!")
-        print(D.info)
+
+        stebbi.Tk.resizable(width=FALSE, height=FALSE)
+        stebbi.Tk.minsize(width=150, height=150)
+        stebbi.Tk.attributes("-toolwindow", 1)
+        stebbi.Tk.title("Fuck Giver")
+
+        stebbi.D.info = ("Click the 'Give a Fuck' button to gain fucks.\nUse the fucks in the Store which you can find in the menubar.")
+        print(stebbi.D.info)
         
         menubar = Menu(stebbi.Tk)
         
         helpmenu = Menu(menubar, tearoff=0)
         helpmenu.add_command(label="About", command=stebbi.about)
         helpmenu.add_command(label="Help", command=stebbi.help)
+        helpmenu.add_command(label="Statistics", command=stebbi.stats)
         menubar.add_cascade(label="Help", menu=helpmenu)
+
+        storemenu = Menu(menubar, tearoff=0)
+
+        storemenu.add_command(label="Store", command=stebbi.store)
+        storemenu.add_command(label="Upgrades", command=stebbi.upgrades)
+        menubar.add_cascade(label="Store", menu=storemenu)
         
         stebbi.Tk.config(menu=menubar)
         
@@ -47,103 +66,187 @@ class stebbi():
         stebbi.texti.set(stebbi.fucks)
         clickamt = Label(stebbi.Tk, textvariable=stebbi.texti)
         
-        b = Button(stebbi.Tk, text="Hello", command=stebbi.click)
-        upgradeB = Button(stebbi.Tk, text="Upgrades", command=stebbi.upgrades)
+        b = Button(stebbi.Tk, text="Give a Fuck", command=stebbi.click)
         
         fucksgiven.pack()
         clickamt.pack()
         b.pack()
-        upgradeB.pack()
+
+        messagebox.showinfo('Welcome!', 'Welcome to Room24. \nHere you will be clicking A LOT. \nThe only way to get out of here is to gather enough fucks. \nAnd with those fucks you will be able to buy upgrades and stuffs. \nEventually you will have enough to buy one of the three "Exit" upgrades and get out of here. \nIf you need help just click the Help dropdown menu and then click Help \nHappy clicking and have fun! \nMade by Stebbbi')
         
         mainloop()
     
     def click():
-            stebbi.fucks += stebbi.inc
+            stebbi.fucks += stebbi.fpc
             print(stebbi.fucks)
             stebbi.texti.set(stebbi.fucks)
 
+
+    def mefun():
+        if stebbi.fucks >= stebbi.mecost:
+            stebbi.meamt += 1
+            stebbi.fucks -= stebbi.mecost
+            stebbi.mecost = stebbi.mecost * 1.1
+            stebbi.fps += 0.1
+            stebbi.texti.set(stebbi.fucks)
+        else:
+            messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
 
     def catfun():
         if stebbi.fucks >= stebbi.costcat:
             stebbi.catamt += 1
             stebbi.fucks -= stebbi.costcat
             stebbi.costcat = stebbi.costcat * 1.1
-            stebbi.fps += 0.1
+            stebbi.fps += 0.5
             stebbi.texti.set(stebbi.fucks)
         else:
-            messagebox.showerror("FUCK!", "Not enough Fucks given!!!")
+            messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
         
     def anonfun():
         if stebbi.fucks >= stebbi.anoncost:
             stebbi.anonamt += 1
             stebbi.fucks -= stebbbi.anoncost
             stebbi.anoncost = stebbbi.anoncost * 1.1
-            stebbi.fps += 0.5
+            stebbi.fps += 2
             stebbi.texti.set(stebbi.fucks)
         else:
-            messagebox.showerror("FUCK!", "Not enough Fucks given!!!")
+            messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
         
-    def upgradefun3():
-        pass
-    
-    def upgradefun4():
-        upgrade4amt += 1
+
+    def storefun4():
+        store4amt += 1
         
-    def upgradefun5():
-        upgrade5amt += 1
+    def storefun5():
+        store5amt += 1
         
-    def upgradefun6():
-        upgrade6amt += 1
+    def storefun6():
+        store6amt += 1
         
-    def upgradefun7():
-        upgrade7amt += 1
+    def storefun7():
+        store7amt += 1
         
     def item():
-        D.items.append("A Single Fuck")
+        stebbi.D.items.append("A Single Fuck")
             
     def about():
-        messagebox.showinfo('About', 'message')
+        messagebox.showinfo('About', 'This is a clicker game made by Stebbbi')
         
     def help():
-        messagebox.showinfo('Help', D.info)
+        messagebox.showinfo('Help', stebbi.D.info)
+
+    def stats():
+        stebbi.stat = Tk()
+
+        Label(stebbi.stat, text="Statistics").pack()
+
+    def morefpc():
+        if stebbi.fucks >= stebbi.fpcupcost:
+            stebbi.fpc = stebbi.fpc * 2
+            stebbi.fpcupcost *= 2
+            stebbi.fpcup += 1
+        else:
+            messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
+
 
 
 
 
     def upgrades():
         stebbi.upgrades = Tk()
+
+        stebbi.upgrades.resizable(width=FALSE, height=FALSE)
+        stebbi.upgrades.minsize(width=150, height=150)
+        stebbi.upgrades.attributes("-toolwindow", 1)
+        stebbi.upgrades.title("Upgrades")
+
+        Label(stebbi.upgrades, text="Upgrades!").pack()
+        if stebbi.fpcup < 11:
+            if stebbi.fpcup == 0:
+                Button(stebbi.upgrades, text="More FPC", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 1:
+                Button(stebbi.upgrades, text="Even More FPC!", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 2:
+                Button(stebbi.upgrades, text="A Lot of FPC!!", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 3:
+                Button(stebbi.upgrades, text="A LOT OF FPC!!!", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 4:
+                Button(stebbi.upgrades, text="Shitloads of FPC!!!!", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 5:
+                Button(stebbi.upgrades, text="Shittons of FPC!!!!!", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 6:
+                Button(stebbi.upgrades, text="OMG FPC!!!!!!", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 7:
+                Button(stebbi.upgrades, text="GODLIKE FPC!!!!!!!", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 8:
+                Button(stebbi.upgrades, text="UNSTOPPABLE FPC!!!!!!!!", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 9:
+                Button(stebbi.upgrades, text="GG FPC!!!!!!!!!", command=stebbi.morefpc).pack()
+            elif stebbi.fpcup == 10:
+                Button(stebbi.upgrades, text="LORD GABEN FPC!!!!!!!!!!", command=stebbi.morefpc).pack()
+
+
+
+        mainloop()
+
+
+    def store():
+        stebbi.stores = Tk()
+
+        stebbi.stores.resizable(width=FALSE, height=FALSE)
+        stebbi.stores.minsize(width=150, height=150)
+        stebbi.stores.attributes("-toolwindow", 1)
+        stebbi.stores.title("Store")
         
-        menubar = Menu(stebbi.upgrades)
+        menubar = Menu(stebbi.stores)
         
         helpmenu = Menu(menubar, tearoff=0)
         helpmenu.add_command(label="About", command=stebbi.about)
         helpmenu.add_command(label="Help", command=stebbi.help)
         menubar.add_cascade(label="Help", menu=helpmenu)
         
-        stebbi.upgrades.config(menu=menubar)
+        stebbi.stores.config(menu=menubar)
         
-        stebbi.cattexti = StringVar()
-        stebbi.cattexti.set(stebbi.costcat)
-        Label(stebbi.upgrades, text="Cost: ").grid(row=0, column=1)
-        Label(stebbi.upgrades, textvariable=stebbi.cattexti).grid(row=0, column=2)
-        Button(stebbi.upgrades, text="Cat", command=stebbi.catfun).grid(row=0)
+        stebbi.metexti = StringVar()
+        stebbi.metexti.set(stebbi.mecost)
+        Label(stebbi.stores, text="Cost: ").grid(row=0, column=1)
+        Label(stebbi.stores, textvariable=stebbi.metexti).grid(row=0, column=2)
+        Button(stebbi.stores, text="Me", command=stebbi.mefun).grid(row=0)
         
         stebbi.anontexti = StringVar()
         stebbi.anontexti.set(stebbi.anoncost)
-        Label(stebbi.upgrades, text="Cost: ").grid(row=1, column=1)
-        Label(stebbi.upgrades, textvariable=stebbi.anontexti).grid(row=1, column=2)
-        Button(stebbi.upgrades, text="Anonymous", command=stebbi.anonfun).grid(row=1)
+        Label(stebbi.stores, text="Cost: ").grid(row=1, column=1)
+        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=1, column=2)
+        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=1)
         
-        Label(stebbi.upgrades, text="Cost:").grid(row=2, column=1)
-        Button(stebbi.upgrades, text="Upgrade3", command=stebbi.upgradefun3).grid(row=2)
-        Label(stebbi.upgrades, text="Cost:").grid(row=3, column=1)
-        Button(stebbi.upgrades, text="Upgrade4", command=stebbi.upgradefun4).grid(row=3)
-        Label(stebbi.upgrades, text="Cost:").grid(row=4, column=1)
-        Button(stebbi.upgrades, text="Upgrade5", command=stebbi.upgradefun5).grid(row=4)
-        Label(stebbi.upgrades, text="Cost:").grid(row=5, column=1)
-        Button(stebbi.upgrades, text="Upgrade6", command=stebbi.upgradefun6).grid(row=5)
-        Label(stebbi.upgrades, text="Cost:").grid(row=6, column=1)
-        Button(stebbi.upgrades, text="Upgrade7", command=stebbi.upgradefun7).grid(row=6)
+        stebbi.cattexti = StringVar()
+        stebbi.cattexti.set(stebbi.costcat)
+        Label(stebbi.stores, text="Cost: ").grid(row=2, column=1)
+        Label(stebbi.stores, textvariable=stebbi.cattexti).grid(row=2, column=2)
+        Button(stebbi.stores, text="Cat", command=stebbi.catfun).grid(row=2)
+
+        stebbi.anontexti = StringVar()
+        stebbi.anontexti.set(stebbi.anoncost)
+        Label(stebbi.stores, text="Cost: ").grid(row=3, column=1)
+        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=3, column=2)
+        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=3)
+
+        stebbi.anontexti = StringVar()
+        stebbi.anontexti.set(stebbi.anoncost)
+        Label(stebbi.stores, text="Cost: ").grid(row=4, column=1)
+        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=4, column=2)
+        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=4)
+
+        stebbi.anontexti = StringVar()
+        stebbi.anontexti.set(stebbi.anoncost)
+        Label(stebbi.stores, text="Cost: ").grid(row=5, column=1)
+        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=5, column=2)
+        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=5)
+
+        stebbi.anontexti = StringVar()
+        stebbi.anontexti.set(stebbi.anoncost)
+        Label(stebbi.stores, text="Cost: ").grid(row=6, column=1)
+        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=6, column=2)
+        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=6)
         
         mainloop()
         
