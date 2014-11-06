@@ -1,6 +1,7 @@
 from . import room
 from tkinter import *
 from tkinter import messagebox
+import threading
 
 print('Welcome to Room 24!')
 
@@ -15,7 +16,7 @@ class stebbi():
     fpcup = 0
     fpcupcost = 1000
     
-    texti = None
+    texti = 0
     metexti = 20
     cattexti = 150
     anontexti = 750
@@ -26,7 +27,7 @@ class stebbi():
     anonamt = 0
 
     mecost = 20
-    costcat = 150
+    catcost = 150
     anoncost = 750
 
     D = room.grunnur(24)
@@ -72,6 +73,7 @@ class stebbi():
         clickamt.pack()
         b.pack()
 
+        stebbi.autofps()
         messagebox.showinfo('Welcome!', 'Welcome to Room24. \nHere you will be clicking A LOT. \nThe only way to get out of here is to gather enough fucks. \nAnd with those fucks you will be able to buy upgrades and stuffs. \nEventually you will have enough to buy one of the three "Exit" upgrades and get out of here. \nIf you need help just click the Help dropdown menu and then click Help \nHappy clicking and have fun! \nMade by Stebbbi')
         
         mainloop()
@@ -87,16 +89,18 @@ class stebbi():
             stebbi.meamt += 1
             stebbi.fucks -= stebbi.mecost
             stebbi.mecost = stebbi.mecost * 1.1
+            stebbi.fucks = round(stebbi.fucks, 1)
             stebbi.fps += 0.1
             stebbi.texti.set(stebbi.fucks)
         else:
             messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
 
     def catfun():
-        if stebbi.fucks >= stebbi.costcat:
+        if stebbi.fucks >= stebbi.catcost:
             stebbi.catamt += 1
-            stebbi.fucks -= stebbi.costcat
-            stebbi.costcat = stebbi.costcat * 1.1
+            stebbi.fucks -= stebbi.catcost
+            stebbi.catcost = stebbi.catcost * 1.1
+            stebbi.fucks = round(stebbi.fucks, 1)
             stebbi.fps += 0.5
             stebbi.texti.set(stebbi.fucks)
         else:
@@ -107,6 +111,7 @@ class stebbi():
             stebbi.anonamt += 1
             stebbi.fucks -= stebbbi.anoncost
             stebbi.anoncost = stebbbi.anoncost * 1.1
+            stebbi.fucks = round(stebbi.fucks, 1)
             stebbi.fps += 2
             stebbi.texti.set(stebbi.fucks)
         else:
@@ -124,6 +129,12 @@ class stebbi():
         
     def storefun7():
         store7amt += 1
+
+    def autofps():
+        stebbi.fucks += stebbi.fps
+        stebbi.fucks = round(stebbi.fucks, 1)
+        stebbi.texti.set(stebbi.fucks)
+        threading.Timer(1, stebbi.autofps).start()
         
     def item():
         stebbi.D.items.append("A Single Fuck")
@@ -211,18 +222,18 @@ class stebbi():
         Label(stebbi.stores, text="Cost: ").grid(row=0, column=1)
         Label(stebbi.stores, textvariable=stebbi.metexti).grid(row=0, column=2)
         Button(stebbi.stores, text="Me", command=stebbi.mefun).grid(row=0)
+
+        stebbi.cattexti = StringVar()
+        stebbi.cattexti.set(stebbi.catcost)
+        Label(stebbi.stores, text="Cost: ").grid(row=1, column=1)
+        Label(stebbi.stores, textvariable=stebbi.cattexti).grid(row=1, column=2)
+        Button(stebbi.stores, text="Cat", command=stebbi.catfun).grid(row=1)
         
         stebbi.anontexti = StringVar()
         stebbi.anontexti.set(stebbi.anoncost)
-        Label(stebbi.stores, text="Cost: ").grid(row=1, column=1)
-        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=1, column=2)
-        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=1)
-        
-        stebbi.cattexti = StringVar()
-        stebbi.cattexti.set(stebbi.costcat)
         Label(stebbi.stores, text="Cost: ").grid(row=2, column=1)
-        Label(stebbi.stores, textvariable=stebbi.cattexti).grid(row=2, column=2)
-        Button(stebbi.stores, text="Cat", command=stebbi.catfun).grid(row=2)
+        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=2, column=2)
+        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=2)
 
         stebbi.anontexti = StringVar()
         stebbi.anontexti.set(stebbi.anoncost)
