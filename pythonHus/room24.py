@@ -10,13 +10,16 @@ class stebbi():
     
     fps = 0
     fpc = 1
-    fucks = 0
+    fucks = 10000000000
     totfucks = 0
 
     fpcup = 0
     fpcupcost = 1000
     
     texti = 0
+    fpstexti = 0
+    fpctexti = 1
+    morefpctexti = None
     metexti = 20
     cattexti = 150
     anontexti = 750
@@ -68,10 +71,26 @@ class stebbi():
         clickamt = Label(stebbi.Tk, textvariable=stebbi.texti)
         
         b = Button(stebbi.Tk, text="Give a Fuck", command=stebbi.click)
+
+        fpsLabel = Label(stebbi.Tk, text="Fucks Per Second(FPS):")
+
+        stebbi.fpstexti = StringVar()
+        stebbi.fpstexti.set(stebbi.fps)
+        dispfps = Label(stebbi.Tk, textvariable=stebbi.fpstexti)
+
+        fpcLabel = Label(stebbi.Tk, text="Fucks Per Click(FPC):")
+
+        stebbi.fpctexti = StringVar()
+        stebbi.fpctexti.set(stebbi.fpc)
+        dispfpc = Label(stebbi.Tk, textvariable=stebbi.fpctexti)
         
         fucksgiven.pack()
         clickamt.pack()
         b.pack()
+        fpsLabel.pack()
+        dispfps.pack()
+        fpcLabel.pack()
+        dispfpc.pack()
 
         stebbi.autofps()
         messagebox.showinfo('Welcome!', 'Welcome to Room24. \nHere you will be clicking A LOT. \nThe only way to get out of here is to gather enough fucks. \nAnd with those fucks you will be able to buy upgrades and stuffs. \nEventually you will have enough to buy one of the three "Exit" upgrades and get out of here. \nIf you need help just click the Help dropdown menu and then click Help \nHappy clicking and have fun! \nMade by Stebbbi')
@@ -90,8 +109,11 @@ class stebbi():
             stebbi.fucks -= stebbi.mecost
             stebbi.mecost = stebbi.mecost * 1.1
             stebbi.fucks = round(stebbi.fucks, 1)
+            stebbi.mecost = round(stebbi.mecost)
             stebbi.fps += 0.1
             stebbi.texti.set(stebbi.fucks)
+            stebbi.metexti.set(stebbi.mecost)
+            stebbi.fpstexti.set(stebbi.fps)
         else:
             messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
 
@@ -101,19 +123,25 @@ class stebbi():
             stebbi.fucks -= stebbi.catcost
             stebbi.catcost = stebbi.catcost * 1.1
             stebbi.fucks = round(stebbi.fucks, 1)
+            stebbi.catcost = round(stebbi.catcost)
             stebbi.fps += 0.5
             stebbi.texti.set(stebbi.fucks)
+            stebbi.cattexti.set(stebbi.catcost)
+            stebbi.fpstexti.set(stebbi.fps)
         else:
             messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
         
     def anonfun():
         if stebbi.fucks >= stebbi.anoncost:
             stebbi.anonamt += 1
-            stebbi.fucks -= stebbbi.anoncost
-            stebbi.anoncost = stebbbi.anoncost * 1.1
+            stebbi.fucks -= stebbi.anoncost
+            stebbi.anoncost = stebbi.anoncost * 1.1
             stebbi.fucks = round(stebbi.fucks, 1)
+            stebbi.anoncost = round(stebbi.anoncost)
             stebbi.fps += 2
             stebbi.texti.set(stebbi.fucks)
+            stebbi.anontexti.set(stebbi.anoncost)
+            stebbi.fpstexti.set(stebbi.fps)
         else:
             messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
         
@@ -152,9 +180,12 @@ class stebbi():
 
     def morefpc():
         if stebbi.fucks >= stebbi.fpcupcost:
+            stebbi.fucks -= stebbi.fpcupcost
             stebbi.fpc = stebbi.fpc * 2
             stebbi.fpcupcost *= 2
             stebbi.fpcup += 1
+            stebbi.fpctexti.set(stebbi.fpc)
+            stebbi.texti.set(stebbi.fucks)
         else:
             messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
 
@@ -163,7 +194,7 @@ class stebbi():
 
 
     def upgrades():
-        stebbi.upgrades = Tk()
+        stebbi.upgrades = Toplevel()
 
         stebbi.upgrades.resizable(width=FALSE, height=FALSE)
         stebbi.upgrades.minsize(width=150, height=150)
@@ -173,27 +204,30 @@ class stebbi():
         Label(stebbi.upgrades, text="Upgrades!").pack()
         if stebbi.fpcup < 11:
             if stebbi.fpcup == 0:
-                Button(stebbi.upgrades, text="More FPC", command=stebbi.morefpc).pack()
+                fpcupt = "More FPC"
             elif stebbi.fpcup == 1:
-                Button(stebbi.upgrades, text="Even More FPC!", command=stebbi.morefpc).pack()
+                fpcupt = "Even More FPC!"
             elif stebbi.fpcup == 2:
-                Button(stebbi.upgrades, text="A Lot of FPC!!", command=stebbi.morefpc).pack()
+                fpcupt = "A Lot of FPC!!"
             elif stebbi.fpcup == 3:
-                Button(stebbi.upgrades, text="A LOT OF FPC!!!", command=stebbi.morefpc).pack()
+                fpcupt = "A LOT OF FPC!!!"
             elif stebbi.fpcup == 4:
-                Button(stebbi.upgrades, text="Shitloads of FPC!!!!", command=stebbi.morefpc).pack()
+                fpcupt = "Shitloads of FPC!!!!"
             elif stebbi.fpcup == 5:
-                Button(stebbi.upgrades, text="Shittons of FPC!!!!!", command=stebbi.morefpc).pack()
+                fpcupt = "Shittons of FPC!!!!!"
             elif stebbi.fpcup == 6:
-                Button(stebbi.upgrades, text="OMG FPC!!!!!!", command=stebbi.morefpc).pack()
+                fpcupt = "OMG FPC!!!!!!"
             elif stebbi.fpcup == 7:
-                Button(stebbi.upgrades, text="GODLIKE FPC!!!!!!!", command=stebbi.morefpc).pack()
+                fpcupt = "GODLIKE FPC!!!!!!!"
             elif stebbi.fpcup == 8:
-                Button(stebbi.upgrades, text="UNSTOPPABLE FPC!!!!!!!!", command=stebbi.morefpc).pack()
+                fpcupt = "UNSTOPPABLE FPC!!!!!!!!"
             elif stebbi.fpcup == 9:
-                Button(stebbi.upgrades, text="GG FPC!!!!!!!!!", command=stebbi.morefpc).pack()
+                fpcupt = "GG FPC!!!!!!!!!"
             elif stebbi.fpcup == 10:
-                Button(stebbi.upgrades, text="LORD GABEN FPC!!!!!!!!!!", command=stebbi.morefpc).pack()
+                fpcupt = "LORD GABEN FPC!!!!!!!!!!"
+            stebbi.morefpctexti = StringVar()
+            stebbi.morefpctexti.set(fpcupt)
+            Button(stebbi.upgrades, textvariable=stebbi.morefpctexti, command=stebbi.morefpc).pack()
 
 
 
@@ -201,7 +235,7 @@ class stebbi():
 
 
     def store():
-        stebbi.stores = Tk()
+        stebbi.stores = Toplevel()
 
         stebbi.stores.resizable(width=FALSE, height=FALSE)
         stebbi.stores.minsize(width=150, height=150)
