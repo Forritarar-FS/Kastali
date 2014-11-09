@@ -10,7 +10,7 @@ class stebbi():
     
     fps = 0
     fpc = 1
-    fucks = 10000000000
+    fucks = 0
     totfucks = 0
 
     fpcup = 0
@@ -20,18 +20,38 @@ class stebbi():
     fpstexti = 0
     fpctexti = 1
     morefpctexti = None
+
     metexti = 20
     cattexti = 150
     anontexti = 750
+    humantexti = 2000
+    illumtexti = 5000
+    valvetexti = 10000
+    gabentexti =50000
 
+    meamttexti = 0
+    catamtextit = 0
+    anonamttexti = 0
+    humanamttexti = 0
+    illumamttexti = 0
+    valveamttexti = 0
+    gabenamttexti = 0
 
     meamt = 0
     catamt = 0
     anonamt = 0
+    humanamt = 0
+    illumamt = 0
+    valveamt = 0
+    gabenamt = 0
 
     mecost = 20
     catcost = 150
     anoncost = 750
+    humancost = 2000
+    illumcost = 5000
+    valvecost = 10000
+    gabencost = 50000
 
     D = room.grunnur(24)
 
@@ -47,7 +67,7 @@ class stebbi():
 
         stebbi.D.info = ("Click the 'Give a Fuck' button to gain fucks.\nUse the fucks in the Store which you can find in the menubar.")
         print(stebbi.D.info)
-        
+
         menubar = Menu(stebbi.Tk)
         
         helpmenu = Menu(menubar, tearoff=0)
@@ -94,7 +114,13 @@ class stebbi():
 
         stebbi.autofps()
         messagebox.showinfo('Welcome!', 'Welcome to Room24. \nHere you will be clicking A LOT. \nThe only way to get out of here is to gather enough fucks. \nAnd with those fucks you will be able to buy upgrades and stuffs. \nEventually you will have enough to buy one of the three "Exit" upgrades and get out of here. \nIf you need help just click the Help dropdown menu and then click Help \nHappy clicking and have fun! \nMade by Stebbbi')
-        
+
+        error = messagebox.askquestion('Error?', 'Is there a error in the console?')
+        if error == 'yes':
+            print('Hello')
+            stebbi.Tk.destroy()
+            do()
+
         mainloop()
     
     def click():
@@ -124,7 +150,7 @@ class stebbi():
             stebbi.catcost = stebbi.catcost * 1.1
             stebbi.fucks = round(stebbi.fucks, 1)
             stebbi.catcost = round(stebbi.catcost)
-            stebbi.fps += 0.5
+            stebbi.fps += 1
             stebbi.texti.set(stebbi.fucks)
             stebbi.cattexti.set(stebbi.catcost)
             stebbi.fpstexti.set(stebbi.fps)
@@ -138,7 +164,7 @@ class stebbi():
             stebbi.anoncost = stebbi.anoncost * 1.1
             stebbi.fucks = round(stebbi.fucks, 1)
             stebbi.anoncost = round(stebbi.anoncost)
-            stebbi.fps += 2
+            stebbi.fps += 5
             stebbi.texti.set(stebbi.fucks)
             stebbi.anontexti.set(stebbi.anoncost)
             stebbi.fpstexti.set(stebbi.fps)
@@ -146,17 +172,61 @@ class stebbi():
             messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
         
 
-    def storefun4():
-        store4amt += 1
+    def humanfun():
+        if stebbi.fucks >= stebbi.humancost:
+            stebbi.humanamt += 1
+            stebbi.fucks -= stebbi.humancost
+            stebbi.humancost = stebbi.humancost * 1.1
+            stebbi.fucks = round(stebbi.fucks, 1)
+            stebbi.humancost = round(stebbi.humancost)
+            stebbi.fps += 15
+            stebbi.texti.set(stebbi.fucks)
+            stebbi.humantexti.set(stebbi.humancost)
+            stebbi.fpstexti.set(stebbi.fps)
+        else:
+            messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
         
-    def storefun5():
-        store5amt += 1
+    def illumfun():
+        if stebbi.fucks >= stebbi.illumcost:
+            stebbi.illumamt += 1
+            stebbi.fucks -= stebbi.illumcost
+            stebbi.illumcost = stebbi.illumcost * 1.1
+            stebbi.fucks = round(stebbi.fucks, 1)
+            stebbi.illumcost = round(stebbi.illumcost)
+            stebbi.fps += 50
+            stebbi.texti.set(stebbi.fucks)
+            stebbi.illumtexti.set(stebbi.illumcost)
+            stebbi.fpstexti.set(stebbi.fps)
+        else:
+            messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
         
-    def storefun6():
-        store6amt += 1
+    def valvefun():
+        if stebbi.fucks >= stebbi.valvecost:
+            stebbi.valveamt += 1
+            stebbi.fucks -= stebbi.valvecost
+            stebbi.valvecost = stebbi.valvecost * 1.1
+            stebbi.fucks = round(stebbi.fucks, 1)
+            stebbi.valvecost = round(stebbi.valvecost)
+            stebbi.fps += 200
+            stebbi.texti.set(stebbi.fucks)
+            stebbi.valvetexti.set(stebbi.valvecost)
+            stebbi.fpstexti.set(stebbi.fps)
+        else:
+            messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
         
-    def storefun7():
-        store7amt += 1
+    def gabenfun():
+        if stebbi.fucks >= stebbi.gabencost:
+            stebbi.gabenamt += 1
+            stebbi.fucks -= stebbi.gabencost
+            stebbi.gabencost = stebbi.gabencost * 1.1
+            stebbi.fucks = round(stebbi.fucks, 1)
+            stebbi.gabencost = round(stebbi.gabencost)
+            stebbi.fps += 1000
+            stebbi.texti.set(stebbi.fucks)
+            stebbi.gabentexti.set(stebbi.gabencost)
+            stebbi.fpstexti.set(stebbi.fps)
+        else:
+            messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
 
     def autofps():
         stebbi.fucks += stebbi.fps
@@ -188,6 +258,30 @@ class stebbi():
             stebbi.texti.set(stebbi.fucks)
         else:
             messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
+
+    def exit():
+        def room14():
+            stebbi.Tk.destroy()
+            stebbi.D.go('n')
+
+        def room23():
+            stebbi.Tk.destroy()
+            stebbi.D.go('w')
+
+        def room34():
+            stebbi.Tk.destroy()
+            stebbi.D.go('s')
+
+        if stebbi.fucks >= 250000:
+            exitwin = Toplevel()
+
+            Label(exitwin, text='Which room do you want to go to?').grid(row=0, column=0)
+            Button(exitwin, text='Room 14', command=room14).grid(row=1)
+            Button(exitwin, text='Room 23', command=room23).grid(row=2)
+            Button(exitwin, text='Room 34', command=room34).grid(row=3)
+        else:
+            messagebox.showerror("FUCK!", "Not enough Fucks to give!!!")
+
 
 
 
@@ -229,6 +323,8 @@ class stebbi():
             stebbi.morefpctexti.set(fpcupt)
             Button(stebbi.upgrades, textvariable=stebbi.morefpctexti, command=stebbi.morefpc).pack()
 
+            Button(stebbi.upgrades, text="Exit", command=stebbi.exit).pack()
+
 
 
         mainloop()
@@ -256,42 +352,70 @@ class stebbi():
         Label(stebbi.stores, text="Cost: ").grid(row=0, column=1)
         Label(stebbi.stores, textvariable=stebbi.metexti).grid(row=0, column=2)
         Button(stebbi.stores, text="Me", command=stebbi.mefun).grid(row=0)
+        stebbi.meamttexti = StringVar()
+        stebbi.meamttexti.set(stebbi.meamt)
+        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
+        Label(stebbi.stores, textvariable=stebbi.meamttexti).grid(row=2, column=4)
 
         stebbi.cattexti = StringVar()
         stebbi.cattexti.set(stebbi.catcost)
         Label(stebbi.stores, text="Cost: ").grid(row=1, column=1)
         Label(stebbi.stores, textvariable=stebbi.cattexti).grid(row=1, column=2)
         Button(stebbi.stores, text="Cat", command=stebbi.catfun).grid(row=1)
+        stebbi.catamttexti = StringVar()
+        stebbi.catamttexti.set(stebbi.catamt)
+        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
+        Label(stebbi.stores, textvariable=stebbi.catamttexti).grid(row=2, column=4)
         
         stebbi.anontexti = StringVar()
         stebbi.anontexti.set(stebbi.anoncost)
         Label(stebbi.stores, text="Cost: ").grid(row=2, column=1)
         Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=2, column=2)
         Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=2)
+        stebbi.anonamttexti = StringVar()
+        stebbi.anonamttexti.set(stebbi.anonamt)
+        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
+        Label(stebbi.stores, textvariable=stebbi.anonamttexti).grid(row=2, column=4)
 
-        stebbi.anontexti = StringVar()
-        stebbi.anontexti.set(stebbi.anoncost)
+        stebbi.humantexti = StringVar()
+        stebbi.humantexti.set(stebbi.humancost)
         Label(stebbi.stores, text="Cost: ").grid(row=3, column=1)
-        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=3, column=2)
-        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=3)
+        Label(stebbi.stores, textvariable=stebbi.humantexti).grid(row=3, column=2)
+        Button(stebbi.stores, text="Humans", command=stebbi.humanfun).grid(row=3)
+        stebbi.humanamttexti = StringVar()
+        stebbi.humanamttexti.set(stebbi.humanamt)
+        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
+        Label(stebbi.stores, textvariable=stebbi.humanamttexti).grid(row=2, column=4)
 
-        stebbi.anontexti = StringVar()
-        stebbi.anontexti.set(stebbi.anoncost)
+        stebbi.illumtexti = StringVar()
+        stebbi.illumtexti.set(stebbi.illumcost)
         Label(stebbi.stores, text="Cost: ").grid(row=4, column=1)
-        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=4, column=2)
-        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=4)
+        Label(stebbi.stores, textvariable=stebbi.illumtexti).grid(row=4, column=2)
+        Button(stebbi.stores, text="Illuminati", command=stebbi.illumfun).grid(row=4)
+        stebbi.illumamttexti = StringVar()
+        stebbi.illumamttexti.set(stebbi.illumamt)
+        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
+        Label(stebbi.stores, textvariable=stebbi.illumamttexti).grid(row=2, column=4)
 
-        stebbi.anontexti = StringVar()
-        stebbi.anontexti.set(stebbi.anoncost)
+        stebbi.valvetexti = StringVar()
+        stebbi.valvetexti.set(stebbi.valvecost)
         Label(stebbi.stores, text="Cost: ").grid(row=5, column=1)
-        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=5, column=2)
-        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=5)
+        Label(stebbi.stores, textvariable=stebbi.valvetexti).grid(row=5, column=2)
+        Button(stebbi.stores, text="Valve", command=stebbi.valvefun).grid(row=5)
+        stebbi.valveamttexti = StringVar()
+        stebbi.valveamttexti.set(stebbi.valveamt)
+        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
+        Label(stebbi.stores, textvariable=stebbi.valveamttexti).grid(row=2, column=4)
 
-        stebbi.anontexti = StringVar()
-        stebbi.anontexti.set(stebbi.anoncost)
+        stebbi.gabentexti = StringVar()
+        stebbi.gabentexti.set(stebbi.gabencost)
         Label(stebbi.stores, text="Cost: ").grid(row=6, column=1)
-        Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=6, column=2)
-        Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=6)
+        Label(stebbi.stores, textvariable=stebbi.gabentexti).grid(row=6, column=2)
+        Button(stebbi.stores, text="Lord Gaben", command=stebbi.gabenfun).grid(row=6)
+        stebbi.gabenamttexti = StringVar()
+        stebbi.gabenamttexti.set(stebbi.gabenamt)
+        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
+        Label(stebbi.stores, textvariable=stebbi.gabenamttexti).grid(row=2, column=4)
         
         mainloop()
         
