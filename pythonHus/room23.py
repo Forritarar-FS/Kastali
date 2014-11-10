@@ -72,7 +72,7 @@ def kok(svar):
 	if ba =="no":
 		messagebox.showerror("Mr.Bones","The piglet sniffed you out and ate you slowly.")
 		exec("GAME OVER")
-	he = messagebox.showerror("Mr.Bones","You dash out of hiding and run away with fear in your mind and tears in your eyes. Coward.")
+	he= messagebox.showerror("Mr.Bones","You dash out of hiding and run away with fear in your mind and tears in your eyes. Coward.")
 	hj= messagebox.askquestion("Mr.Bones","You see two paths ahead of you. will you take the right one?")
 	if hj == "no":
 		messagebox.showerror("Mr.Bones","You took the left path and bumped into the piglet which began eating you ever so gently.")
@@ -122,8 +122,8 @@ def bob():
 def dod():
 	#leads to billy,bobby,asdf
 	#dead end
-	Messagebox.showerror("Mr.Bones","Not all correct ways are to the right.")
-	kb = Messagebox.askquestion("Mr.Bones","would you like to proceed?")
+	messagebox.showerror("Mr.Bones","Not all correct ways are to the right.")
+	kb = messagebox.askquestion("Mr.Bones","would you like to proceed?")
 	if kb == "yes":
 		messagebox.showerror("Mr.Bones","You tripped and died.")
 		exec("GAME OVER")
@@ -315,13 +315,13 @@ def vault():
 			if oqa=="yes":
 				messagebox.showinfo("Mr.Bones","The door opens and you are blinded")
 				messagebox.showinfo("Mr.Bones","It's sunlight! You did it! You escaped!")
-				Messagebox.showerror("Mr.Bones","You were slaughtered by a horde of monsters.")
+				messagebox.showerror("Mr.Bones","You were slaughtered by a horde of monsters.")
 				exec("GAME OVER")
 			else:
 				messagebox.showinfo("Mr.Bones","The Vault suddenly opens.")
 				messagebox.showinfo("Mr.Bones","Light suddenly shines on you, are you finally free?")
-				Messagebox.showerror("Mr.Bones","nope. There was a horde of monsters in there.")
-				Messagebox.showinfo("Mr.Bones","Artificial rooms sure are sweet huh?")
+				messagebox.showerror("Mr.Bones","nope. There was a horde of monsters in there.")
+				messagebox.showinfo("Mr.Bones","Artificial rooms sure are sweet huh?")
 				exec("GAME OVER")
 
 		else:
