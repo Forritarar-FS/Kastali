@@ -29,14 +29,6 @@ class stebbi():
     valvetexti = 10000
     gabentexti =50000
 
-    meamttexti = 0
-    catamtextit = 0
-    anonamttexti = 0
-    humanamttexti = 0
-    illumamttexti = 0
-    valveamttexti = 0
-    gabenamttexti = 0
-
     meamt = 0
     catamt = 0
     anonamt = 0
@@ -352,71 +344,49 @@ class stebbi():
         Label(stebbi.stores, text="Cost: ").grid(row=0, column=1)
         Label(stebbi.stores, textvariable=stebbi.metexti).grid(row=0, column=2)
         Button(stebbi.stores, text="Me", command=stebbi.mefun).grid(row=0)
-        stebbi.meamttexti = StringVar()
-        stebbi.meamttexti.set(stebbi.meamt)
-        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
-        Label(stebbi.stores, textvariable=stebbi.meamttexti).grid(row=2, column=4)
+
 
         stebbi.cattexti = StringVar()
         stebbi.cattexti.set(stebbi.catcost)
         Label(stebbi.stores, text="Cost: ").grid(row=1, column=1)
         Label(stebbi.stores, textvariable=stebbi.cattexti).grid(row=1, column=2)
         Button(stebbi.stores, text="Cat", command=stebbi.catfun).grid(row=1)
-        stebbi.catamttexti = StringVar()
-        stebbi.catamttexti.set(stebbi.catamt)
-        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
-        Label(stebbi.stores, textvariable=stebbi.catamttexti).grid(row=2, column=4)
+
         
         stebbi.anontexti = StringVar()
         stebbi.anontexti.set(stebbi.anoncost)
         Label(stebbi.stores, text="Cost: ").grid(row=2, column=1)
         Label(stebbi.stores, textvariable=stebbi.anontexti).grid(row=2, column=2)
         Button(stebbi.stores, text="Anonymous", command=stebbi.anonfun).grid(row=2)
-        stebbi.anonamttexti = StringVar()
-        stebbi.anonamttexti.set(stebbi.anonamt)
-        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
-        Label(stebbi.stores, textvariable=stebbi.anonamttexti).grid(row=2, column=4)
+
 
         stebbi.humantexti = StringVar()
         stebbi.humantexti.set(stebbi.humancost)
         Label(stebbi.stores, text="Cost: ").grid(row=3, column=1)
         Label(stebbi.stores, textvariable=stebbi.humantexti).grid(row=3, column=2)
         Button(stebbi.stores, text="Humans", command=stebbi.humanfun).grid(row=3)
-        stebbi.humanamttexti = StringVar()
-        stebbi.humanamttexti.set(stebbi.humanamt)
-        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
-        Label(stebbi.stores, textvariable=stebbi.humanamttexti).grid(row=2, column=4)
+
 
         stebbi.illumtexti = StringVar()
         stebbi.illumtexti.set(stebbi.illumcost)
         Label(stebbi.stores, text="Cost: ").grid(row=4, column=1)
         Label(stebbi.stores, textvariable=stebbi.illumtexti).grid(row=4, column=2)
         Button(stebbi.stores, text="Illuminati", command=stebbi.illumfun).grid(row=4)
-        stebbi.illumamttexti = StringVar()
-        stebbi.illumamttexti.set(stebbi.illumamt)
-        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
-        Label(stebbi.stores, textvariable=stebbi.illumamttexti).grid(row=2, column=4)
+
 
         stebbi.valvetexti = StringVar()
         stebbi.valvetexti.set(stebbi.valvecost)
         Label(stebbi.stores, text="Cost: ").grid(row=5, column=1)
         Label(stebbi.stores, textvariable=stebbi.valvetexti).grid(row=5, column=2)
         Button(stebbi.stores, text="Valve", command=stebbi.valvefun).grid(row=5)
-        stebbi.valveamttexti = StringVar()
-        stebbi.valveamttexti.set(stebbi.valveamt)
-        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
-        Label(stebbi.stores, textvariable=stebbi.valveamttexti).grid(row=2, column=4)
+
 
         stebbi.gabentexti = StringVar()
         stebbi.gabentexti.set(stebbi.gabencost)
         Label(stebbi.stores, text="Cost: ").grid(row=6, column=1)
         Label(stebbi.stores, textvariable=stebbi.gabentexti).grid(row=6, column=2)
         Button(stebbi.stores, text="Lord Gaben", command=stebbi.gabenfun).grid(row=6)
-        stebbi.gabenamttexti = StringVar()
-        stebbi.gabenamttexti.set(stebbi.gabenamt)
-        Label(stebbi.stores, text="Owned: ").grid(row=2, column=3)
-        Label(stebbi.stores, textvariable=stebbi.gabenamttexti).grid(row=2, column=4)
-        
+
         mainloop()
         
         
