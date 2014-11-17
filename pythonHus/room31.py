@@ -3,7 +3,7 @@ import random
 import webbrowser
 import turtle
 
-
+#bteytt
 def do():
 	pass
 	print ("Velkominn í Herbergi 31")
